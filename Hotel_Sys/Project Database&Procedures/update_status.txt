@@ -1,0 +1,8 @@
+create or replace PROCEDURE update_status
+(CID NUMBER)
+as
+BEGIN
+UPDATE ROOM2
+SET CURRENTLYRESERVED='y'
+where ROOM_NUMBER=CID;
+end;

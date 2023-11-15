@@ -1,0 +1,8 @@
+create or replace PROCEDURE insert_reservation
+(RID number,CID NUMBER,Fname VARCHAR2,lname VARCHAR2,startreserv VARCHAR2,endreserv VARCHAR2)
+as
+BEGIN
+INSERT into RESERVATION
+(RESERVATION_ID,CUSTOMER_ID,FIRST_NAME,LAST_NAME,START_RESERVATION,END_RESERVATION)
+values(RID,CID,Fname,lname,startreserv,endreserv);
+end;

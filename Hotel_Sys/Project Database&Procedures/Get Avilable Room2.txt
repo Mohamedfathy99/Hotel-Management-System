@@ -1,0 +1,10 @@
+create or replace PROCEDURE get_avilable_rooms2
+(roomkind in VARCHAR2,Roomid out sys_refcursor)
+as
+BEGIN
+OPEN roomid for
+select r.ROOM_NUMBER
+from hotel h, room2 r
+where h.ROOM_NUMBER=r.ROOM_NUMBER and r.CURRENTLYRESERVED='n' and
+r.ROOM_KIND=roomkind;
+end;

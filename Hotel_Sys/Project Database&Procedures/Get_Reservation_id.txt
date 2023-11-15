@@ -1,0 +1,8 @@
+create or replace PROCEDURE Get_Reservation_id
+(RID out NUMBER)
+as
+BEGIN 
+SELECT max(RESERVATION_ID)
+INTO RID
+from RESERVATION;
+end;

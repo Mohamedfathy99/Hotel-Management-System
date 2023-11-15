@@ -1,0 +1,183 @@
+-- CREATE DATABASE Hotel Management System;
+
+
+Create Table Customer (
+    customer_id varchar(30) not null primary key,
+    first_name varchar(30),
+    last_name varchar(30),
+    address varchar(30),
+    phone number (20),
+    email varchar (30) not NULL unique,
+    customer_password varchar (30) not NULL
+);
+
+
+insert into customer(customer_id, first_name, last_name, address, phone, email, customer_password )
+values(1,'mohamed' ,'ashraf' ,'17 Standhouse Lawns' ,0102345 , 'mohamed.ashraf@eeuasi.com',123456);
+
+insert into customer(customer_id, first_name, last_name, address, phone, email,customer_password)
+values(2, 'ahmed', 'ali', '23 Evergreen Terrace',0102845 ,'ahmed.ali@eeuasi.com',123456 );
+
+insert into customer(customer_id, first_name, last_name, address, phone, email,customer_password)
+values(3,'mahmoud' ,'khaled' ,'123 Hamptons' ,0102945 ,'mahmoud.khaled@eeuasi.com',123456 );
+
+insert into customer(customer_id, first_name, last_name, address, phone, email,customer_password)
+values(4,'adham' ,'hesham' ,'32 Allenview' ,0102645 , 'adham.hesham@eeuasi.com',123456);
+
+insert into customer(customer_id, first_name, last_name, address, phone, email,customer_password)
+values(5,'karim' ,'yasser' ,'230 Lynn Street' ,0102045 ,'karim.yasser@eeuasi.com',123456 );
+
+
+create table Room (
+    room_number int primary key ,
+    customer_id varchar(30) not null
+    references Customer (customer_id),
+    room_kind varchar(30),
+    first_name varchar(30),
+    last_name varchar(30),
+    start_reservation varchar(30),
+    end_reservation varchar(30)
+);
+--drop table Room;
+
+insert into Room(room_number,customer_id,room_kind, first_name, last_name, start_reservation, end_reservation)
+values (1,1,'single', 'mohamed','ashraf','01-may-22','10-may-22');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation)
+values (2,2,'double', 'ahmed','ali','02-may-22','11-may-22');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation)
+values (3,3,'double', 'mahmoud','khaled','04-may-22','8-may-22');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation)
+values (4,4,'single', 'adham','hesham','05-may-22','12-may-22');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation)
+values (5,5,'single', 'karim','yasser','07-may-22','15-may-22');
+
+
+create table Room2 (
+    room_number int primary key ,
+    customer_id varchar(30) not null
+    references Customer (customer_id),
+    room_kind varchar(30),
+    first_name varchar(30),
+    last_name varchar(30),
+    start_reservation varchar(30),
+    end_reservation varchar(30),
+    CURRENTLYRESERVED char(1)
+);
+--drop table Room;
+
+insert into Room(room_number,customer_id,room_kind, first_name, last_name, start_reservation, end_reservation,CURRENTLYRESERVED )
+values (1,1,'single', 'mohamed','ashraf','01-may-22','10-may-22','n');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation,CURRENTLYRESERVED )
+values (2,2,'double', 'ahmed','ali','02-may-22','11-may-22','n');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation,CURRENTLYRESERVED )
+values (3,3,'double', 'mahmoud','khaled','04-may-22','8-may-22','n');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation,CURRENTLYRESERVED )
+values (4,4,'single', 'adham','hesham','05-may-22','12-may-22','n');
+
+insert into Room(room_number,customer_id, room_kind, first_name, last_name, start_reservation, end_reservation,CURRENTLYRESERVED )
+values (5,5,'single', 'karim','yasser','07-may-22','15-may-22','n');
+
+
+
+create table hotel(
+   hotel_id varchar(30) not null primary key,
+   hotel_name varchar(30) not null unique,
+   mobile_app varchar(30),
+   phone number (20),
+   website varchar(30),
+   city varchar(30),
+   zip_code varchar(30),
+   street varchar(30),
+   room_number int not null
+   references Room (room_number)
+   
+);
+
+
+insert into hotel (hotel_id, hotel_name, mobile_app, phone, website, city, zip_code, street, room_number)
+values (315,'Primland','Primland_app',879546,'http/primland.com','Eastwich',07087,'17 Standhouse Lawns',1);
+
+insert into hotel (hotel_id, hotel_name, mobile_app, phone, website, city, zip_code, street, room_number)
+values (418,'Royal Orbit','Royal Orbit_app',456213,'http/royalorbit.net','Golddale',60515,'123 Hamptons',2);
+
+insert into hotel (hotel_id, hotel_name, mobile_app, phone, website, city, zip_code, street, room_number)
+values (287,'Holly House','Holly House_app',489756,'http/hollyhouse.com','Mansland',20164,'230 Lynn Street',3);
+
+
+create table employee (
+   employee_id varchar(30) not null primary key,
+   hotel_name varchar(30) not null unique
+   references hotel (hotel_name),
+   gender varchar(30),
+   salary float,
+   first_name varchar(30),
+   last_name varchar(30),
+   phone number (20),
+   email varchar (30) not NULL unique,
+   address varchar(30)
+   
+   
+);
+
+insert into employee (employee_id, hotel_name, gender, salary, first_name, last_name, phone, email, address)
+values(100 ,'Primland','Male' ,4500 ,'Mohamed' ,'Akram' , 01045624515,'Mohamed.yousef@gmail.com' ,' 3225 Yorkie Lane' );
+
+
+insert into employee (employee_id, hotel_name, gender, salary, first_name, last_name, phone, email, address)
+values(101 ,'Royal Orbit' ,'Male' ,5000 ,'Yousef' ,'mohamed' ,01147458795 ,'yousef.mohamed@gmail.com' ,' 132 Rue de Irak' );
+
+
+insert into employee (employee_id, hotel_name, gender, salary, first_name, last_name, phone, email, address)
+values(102 ,'Holly House' ,'Female' ,4500 ,'Lamia' ,'Ahmed' ,01263254967 ,'Lamia.Ahmed@gmail.com' ,'114 Rue Aghlab' );
+
+
+create table reservation(
+   reservation_id number (20)  not null primary key,
+   first_name varchar(30) not null,
+   last_name varchar(30) not null,
+   start_reservation varchar(30),
+   end_reservation varchar(30),
+   customer_id varchar(30) 
+   references Customer (customer_id)
+   
+);
+
+
+insert into reservation(reservation_id, first_name, last_name, start_reservation, end_reservation, customer_id)
+values(1,'mohamed','ashraf' ,'01-may-22','10-may-22' ,1 );
+
+insert into reservation(reservation_id, first_name, last_name, start_reservation, end_reservation, customer_id)
+values(2,'ahmed','ali','02-may-22','11-may-22',2);
+
+insert into reservation(reservation_id, first_name, last_name, start_reservation, end_reservation, customer_id)
+values(3,'mahmoud','khaled','04-may-22','8-may-22',3);
+
+create table bills (
+   bill_id number(20) not null primary key ,
+   hotel_name varchar(30) not null unique
+   references hotel (hotel_name),
+   first_name varchar(30) not null,
+   last_name varchar(30) not null,
+   date_time varchar(30),
+   price float
+   
+);
+
+
+insert into bills (bill_id, hotel_name, first_name, last_name, date_time, price )
+values (1,'Primland','mohamed', 'ashraf','10-may-22',450);
+
+
+insert into bills (bill_id, hotel_name, first_name, last_name, date_time, price )
+values (2,'Royal Orbit','ahmed', 'ali','11-may-22',420);
+
+
+insert into bills (bill_id, hotel_name, first_name, last_name, date_time, price )
+values (3,'Holly House','mahmoud', 'khaled','8-may-22',350);
